@@ -1,4 +1,4 @@
-class CreateInventoryParts < ActiveRecord::Migration
+class CreateInventoryParts < ActiveRecord::Migration[4.2]
   def self.up
     create_table :inventory_parts do |t|
       t.column :part_number, :string

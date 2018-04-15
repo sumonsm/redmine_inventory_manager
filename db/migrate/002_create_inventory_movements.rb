@@ -1,4 +1,4 @@
-class CreateInventoryMovements < ActiveRecord::Migration
+class CreateInventoryMovements < ActiveRecord::Migration[4.2]
   def self.up
     create_table :inventory_movements do |t|
       t.column :inventory_part_id, :integer

@@ -1,4 +1,4 @@
-class KeysAndModifications < ActiveRecord::Migration
+class KeysAndModifications < ActiveRecord::Migration[4.2]
     def self.up
       execute <<-SQL
         ALTER TABLE `inventory_parts` ADD

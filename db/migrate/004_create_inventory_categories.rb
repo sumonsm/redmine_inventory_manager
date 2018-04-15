@@ -1,4 +1,4 @@
-class CreateInventoryCategories < ActiveRecord::Migration
+class CreateInventoryCategories < ActiveRecord::Migration[4.2]
   def self.up
     create_table :inventory_categories do |t|
       t.column :name, :string
