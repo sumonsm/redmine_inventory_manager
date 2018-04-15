@@ -429,7 +429,7 @@ class InventoryController < ApplicationController
     @statuses_array = ['',l('active'),l("obsolet"),l('discontinued')]
     current_user = find_current_user
     @has_permission = current_user.admin? || user_has_warehouse_permission(current_user.id, nil)
-    if params[:delete] or params[:edit] or params[:inventory_part] or params[:inventory_software]
+    if params[:delete] or params[:edit] or params[:inventory_part]
       if @has_permission
     
         if params[:delete]
@@ -453,16 +453,6 @@ class InventoryController < ApplicationController
             params[:create]  = false
           end
         end
-        
-        if params[:inventory_software]
-          @inventory_software.update_attributes(params[:inventory_software].permit!)
-          if @inventory_part.save
-            @inventory_part = InventoryPart.new
-            params[:edit] = false
-            params[:create]  = false
-          end
-        end
-        
       else
         flash[:error] = l('permission_denied')
       end
@@ -471,32 +461,33 @@ class InventoryController < ApplicationController
   end
     
   def softwares
-    @inventory_part  = InventoryPart.new
-    @categories = InventoryCategory.order("name ASC").all.map {|c| [c.name,c.id]}
-    @statuses = { l('active') => 1, l("obsolet") => 2, l('discontinued') => 3}
-    @statuses_array = ['',l('active'),l("obsolet"),l('discontinued')]
+    @inventory_software  = InventorySoftware.new
+    # @categories = InventoryCategory.order("name ASC").all.map {|c| [c.name,c.id]}
+    # @statuses = { l('active') => 1, l("obsolet") => 2, l('discontinued') => 3}
+    # @statuses_array = ['',l('active'),l("obsolet"),l('discontinued')]
+    @products = InventoryPart.order("part_number ASC").all.map {|c| [c.part_number,c.id]}
     current_user = find_current_user
     @has_permission = current_user.admin? || user_has_warehouse_permission(current_user.id, nil)
-    if params[:delete] or params[:edit] or params[:inventory_part] or params[:inventory_software]
+    if params[:delete] or params[:edit] or params[:inventory_software]
       if @has_permission
     
         if params[:delete]
-          ok = InventoryPart.delete(params[:delete]) rescue false
+          ok = InventorySoftware.delete(params[:delete]) rescue false
           unless ok
             flash[:error] = l('cant_delete_register')
           end
         end
         
         if params[:edit]
-          @inventory_part = InventoryPart.find(params[:edit])
+          @inventory_software = InventorySoftware.find(params[:edit])
         else
-          @inventory_part = InventoryPart.new
+          @inventory_software = InventorySoftware.new
         end
         
         if params[:inventory_software]
           @inventory_software.update_attributes(params[:inventory_software].permit!)
-          if @inventory_part.save
-            @inventory_part = InventoryPart.new
+          if @inventory_software.save
+            @inventory_software = InventorySoftware.new
             params[:edit] = false
             params[:create]  = false
           end
@@ -506,7 +497,7 @@ class InventoryController < ApplicationController
         flash[:error] = l('permission_denied')
       end
     end
-    @parts = InventoryPart.all
+    @softwares = InventorySoftware.all
   end
   
   def providors

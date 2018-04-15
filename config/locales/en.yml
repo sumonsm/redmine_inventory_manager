@@ -32,6 +32,11 @@
   field_user_to: User
   field_warehouse_to: Enter to Warehouse
   field_serial_number: Serial Number
+  field_product_key: Product Key
+  field_registered_email: Registered Email
+  field_allowed_count: Devices Allowed Per License
+  field_expiry_date: Expiry Date
+  field_installed_device: Installed Device
   inventory_stock: Inventory Stock
   inventory_movements: Movements
   inventory_parts: Products
