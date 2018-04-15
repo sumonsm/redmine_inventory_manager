@@ -462,9 +462,6 @@ class InventoryController < ApplicationController
     
   def softwares
     @inventory_software  = InventorySoftware.new
-    # @categories = InventoryCategory.order("name ASC").all.map {|c| [c.name,c.id]}
-    # @statuses = { l('active') => 1, l("obsolet") => 2, l('discontinued') => 3}
-    # @statuses_array = ['',l('active'),l("obsolet"),l('discontinued')]
     @products = InventoryPart.order("part_number ASC").all.map {|c| [c.part_number,c.id]}
     current_user = find_current_user
     @has_permission = current_user.admin? || user_has_warehouse_permission(current_user.id, nil)
