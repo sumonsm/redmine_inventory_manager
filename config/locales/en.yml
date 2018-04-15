@@ -20,6 +20,7 @@
   field_manufacturer: Manufacturer/Branch
   field_part_number: Product
   field_inventory_part: Product
+  field_inventory_software: Software
   field_inventory_providor: Providor
   field_quantity: Quantity
   field_squantity: Qty
@@ -34,6 +35,7 @@
   inventory_stock: Inventory Stock
   inventory_movements: Movements
   inventory_parts: Products
+  inventory_softwares: Softwares
   inventory_categories: Categories
   inventory_warehouses: Warehouses
   inventory_providors: Providors
@@ -49,6 +51,7 @@
   Providor: Providor
   Warehouse: Warehouse
   Part: Product
+  Software: Software
   Category: Category
   all_warehouses: All Warehouses
   delete_confirmation: Are you sure you want to DELETE the registry?
